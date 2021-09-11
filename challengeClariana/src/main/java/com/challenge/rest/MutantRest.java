@@ -61,7 +61,7 @@ public class MutantRest {
 					
 					float res = mutant/human;
 					
-					res = (float) (Math.round(res * 100) / 100d);
+					res = (float) (Math.round(res * 10) / 10d);
 					
 					adn.setRatio(res);
 				}
@@ -75,7 +75,7 @@ public class MutantRest {
 					
 					float res = mutant/human;
 					
-					res = (float) (Math.round(res * 100) / 100d);
+					res = (float) (Math.round(res * 10) / 10d);
 					
 					adn.setRatio(res);
 				}
