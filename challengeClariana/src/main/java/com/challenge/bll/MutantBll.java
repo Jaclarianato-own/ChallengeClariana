@@ -1,54 +1,58 @@
 package com.challenge.bll;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import com.challenge.models.Mutant;
+import com.challenge.services.AdnService;
 
 public class MutantBll {
+	
+	@Autowired
+	AdnService adnService;
 
-	public static boolean isMutant(Mutant mutant) {
+	public int isMutant(Mutant mutant) {
 
 		try {
 			boolean isSimmetrical = validateMatrixSymmetryNxN(mutant);
 
 			if (!isSimmetrical)
-				return false;
+				return -1;
 
 			boolean isLetters = validateLetters(mutant);
 
 			if (!isLetters)
-				return false;
+				return -1;
 
 			char[][] matrix = ConvertToCharMatrix(mutant.getDna());
 			
 			if(null == matrix)
-				return false;
+				return -1;
 
 			int sequences = horizontalValidation(matrix);
 
 			if (sequences > 1)
-				return true;
+				return 1;
 
 			sequences = verticalValidation(matrix) + sequences;
 
 			if (sequences > 1)
-				return true;
+				return 1;
 
 			sequences = leftDiagonal(matrix) + sequences;
 
 			if (sequences > 1)
-				return true;
+				return 1;
 
 			sequences = rigthDiagonal(matrix) + sequences;
 
 			if (sequences > 1)
-				return true;
+				return 1;
+			
 
-			return false;
+			return 0;
 
 		} catch (Exception e) {
-			return false;
+			return -1;
 		}
 
 	}
