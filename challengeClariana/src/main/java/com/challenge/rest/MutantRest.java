@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.challenge.bll.MutantBll;
 import com.challenge.models.Adn;
 import com.challenge.models.AdnResponse;
+import com.challenge.models.HistoricoAdn;
 import com.challenge.models.Mutant;
 import com.challenge.services.AdnService;
 
@@ -30,12 +31,17 @@ public class MutantRest {
 				throw new Exception(String.valueOf(respuesta));
 
             updateStat(true);
+            
+            registerNewAdn(mutant.getDna(), true);
 
 			return ResponseEntity.ok().build();
 
 		} catch (Exception e) {
-			if(e.getMessage().equals("0"))
-			updateStat(false);
+			if(e.getMessage().equals("0")) {
+				registerNewAdn(mutant.getDna(), false);
+				updateStat(false);
+			}
+			
 			
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 
@@ -43,6 +49,28 @@ public class MutantRest {
 
 	}
 	
+	private void registerNewAdn(String[] dna, boolean isMutant) {
+		
+		try {
+			
+			String concat = "";
+			for(String x : dna) {
+				concat = concat+"."+ x;
+			}
+			
+			HistoricoAdn historicoAdn = new HistoricoAdn();
+			
+			historicoAdn.setAdn(concat);	
+			historicoAdn.setMutant(isMutant);
+			
+			adnService.saveAdn(historicoAdn);
+			
+		}catch(Exception e) {
+			
+		}
+		
+	}
+
 	private void updateStat(boolean isMutant) {
 		
 		try {

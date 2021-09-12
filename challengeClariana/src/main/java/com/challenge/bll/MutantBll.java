@@ -7,12 +7,11 @@ import com.challenge.services.AdnService;
 
 public class MutantBll {
 	
-	@Autowired
-	AdnService adnService;
 
 	public int isMutant(Mutant mutant) {
 
 		try {
+			
 			boolean isSimmetrical = validateMatrixSymmetryNxN(mutant);
 
 			if (!isSimmetrical)
