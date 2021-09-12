@@ -13,13 +13,13 @@
       { "dna":["ATGCGA","CAGTGC","TTATTT","AGACGG","GCGTCA","TCACTG"] }
 
   - Condiciones request:
-    - La estructura debe contemplar un arreglo N*N, sino generar BadRequest 403
-    - Solamente se aceptan las letras (A,C,G,T), sino generar BadRequest 403
+    - La estructura debe contemplar un arreglo N*N, sino generará BadRequest 403
+    - Solamente se aceptan las letras (A,C,G,T), sino generará BadRequest 403
     
   - Response:
     - Si es mutante la api responderá con estatus Ok 200.
     - Si no es mutante la api responderá con status 403.
-    - Incumplimiento de condiciones la api responderá con status 403.
+    - El incumplimiento de las condiciones generará como respuesta un status 403.
     
 #Nivel 3
  - Cada ADN verificado se estarán registrando en la BD:
