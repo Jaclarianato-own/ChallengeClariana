@@ -1,9 +1,7 @@
 package com.challenge.bll;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.challenge.models.Mutant;
-import com.challenge.services.AdnService;
 
 public class MutantBll {
 	
